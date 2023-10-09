@@ -36,6 +36,17 @@ app.post('/books', async (request, response) => {
     }
 });
 
+app.get('/books', async (request, response) => {
+    try {
+        const books = await Book.find({});
+        return response.status(200).send(books);
+    } catch (error) {
+        console.error(error);
+        response.status(500).send('Internal Server Error');
+    }
+}
+);
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {
