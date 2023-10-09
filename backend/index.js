@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+import postRoutes from './routes/posts.js';
+
 const app = express();
 dotenv.config();
 
@@ -18,9 +20,9 @@ app.get('/', (req, res) => {
     });
 });
 
+app.use('/posts', postRoutes);
+
 const PORT = process.env.PORT || 5000;
-
-
 
 mongoose
 .connect(process.env.CONNECTION_URL, {
