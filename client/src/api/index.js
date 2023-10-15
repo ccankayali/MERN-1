@@ -1,15 +1,9 @@
-import axios from "axios";
-const apiEndpoint = "/posts/";
+import axios from 'axios';
 
-export const fetchPosts = async () => await axios.get(apiEndpoint);
+const url = 'http://localhost:5000/posts';
 
-export const fetchSinglePost = async (id) =>
-  await axios.get(`${apiEndpoint}${id}`);
-
-export const createPost = async (post) => await axios.post(apiEndpoint, post);
-
-export const updatePost = async (id, updatedPost) =>
-  await axios.patch(`${apiEndpoint}${id}`, updatedPost);
-
-export const deletePost = async (id) =>
-  await axios.delete(`${apiEndpoint}${id}`);
+export const fetchPosts = () => axios.get(url);
+export const createPost = (newPost) => axios.post(url, newPost);
+export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
+export const deletePost = (id) => axios.delete(`${url}/${id}`);
